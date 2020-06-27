@@ -1,4 +1,55 @@
-font-family: 'Pirata One', cursive;
-font-family: 'Saira Condensed', sans-serif;
-font-family: 'Uncial Antiqua', cursive;
-font-family: 'VT323', monospace;
+@font-face {
+  font-family: goldenSun;
+  src: url(/resources/fonts/Golden-Sun.ttf);
+}
+
+@font-face {
+  font-family: titleFont;
+  src: url(/resources/fonts/Taranis.ttf);
+}
+
+.page-title{
+  /* Medieval Fancy */
+  font-family: titleFont;
+  }
+
+.title{
+  font-family: 'Odibee Sans', cursive;
+
+}
+
+.description{
+/* Modern */
+font-family: 'Averia Serif Libre', cursive;
+}
+
+.main-font{
+/* Old school */
+font-family: goldenSun;
+}
+
+
+.rm-my{
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.rm-mx{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.rm-py{
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.rm-px{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+
+.hidden{
+  display: none !important;
+}
