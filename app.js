@@ -1,4 +1,5 @@
 
+//#region SECTION Heros, Characters, Monsters
 let hero = [{
   isaac: {
     charImg: 'resources/characters/hero/Isaac_lBlade_Front.gif',
@@ -12,25 +13,244 @@ let hero = [{
   }
 }]
 
-let resources = [{
-  slimes: {
-    count: 0,
-    icon: 'resources/resource-icons/Potion.gif'
+let monsters = {
+  brigand: [{
+    name: 'Brigand',
+    img: 'resources/monsters/Brigand.gif',
+    level: 0
+  }],
+  slimes: [
+    {
+      name: 'Weak Slime',
+      img: 'resources/monsters/slimes/Slime.gif',
+      level: 1
+    },{ 
+      name: 'Meaty Slime',
+      img: 'resources/monsters/slimes/Slime_Beast.gif',
+      level: 2
+    },{
+      name: 'Chonky Slime',
+      img: 'resources/monsters/slimes/Ooze.gif',
+      level: 3
+    }
+  ],
+  beasts: [{
+    goblin: {
+      name: 'Goblin',
+      img: 'resources/monsters/beasts/Alec_Goblin.gif',
+      level: 1
+    },
+    antLion: {
+      name: 'Ant Lion',
+      img: 'resources/monsters/beasts/Ant_Lion.gif',
+      level: 2
+    },
+    golem: {
+      name: 'Earth Golem',
+      img: 'resources/monsters/beasts/Golem.gif',
+      level: 3
+    },
+    woodWalker: {
+      name: 'Wood Walker',
+      img: 'resources/monsters/beasts/Wood_Walker.gif',
+      level: 4
+    },
+  }],
+  undead: [{
+    zombie: {
+      name: 'Zombie',
+      img: 'resources/monsters/undead/Zombie.gif',
+      level: 1
+    },
+    skeleton: {
+      name: 'Skeleton',
+      img: 'resources/monsters/undead/Skeleton.gif',
+      level: 2
+    },
+    ghoul: {
+      name: 'Ghoul',
+      img: 'resources/monsters/undead/Amaze.gif',
+      level: 3
+    },
+    slayer: {
+      name: 'Slayer',
+      img: 'resources/monsters/undead/Slayer.gif',
+      level: 4
+    },
+  }]
+}
+
+let characters = [{
+  unlocks: {
+    guildMaster: {
+      name: 'Guild Master',
+      icon: 'resources/characters/unlocks/Innkeeper.gif',
+      slimeCost: 20,
+    },
+    bladeSmith: {
+      name: 'Blade Smith',
+      icon: 'resources/characters/unlocks/Master_Hama.gif',
+      goldCost: 20,
+    }
   },
-  gold: {
-    count: 0,
-    icon: 'resources/resource-icons/Potion.gif'
-  },
-  health: {
-    count: 0,
-    icon: 'resources/resource-icons/Water_of_Life.gif'
-  },
-  monsterHeads: {
-    count: 0,
-    icon: 'resources/resource-icons/Flame_Shield.gif'
+  hirelings: {
+    levelOne: [{
+      spectralArmor: {
+        name: 'Spectral Armor',
+        quote: `"Rattling noises"`,
+        level: 1,
+        health: 20,
+        unique: false,
+        icon: 'resources/characters/hirelings/hireicons/Shadow_Babi.gif',
+        img: 'resources/characters/hirelings/Azart.gif',
+        slimeCost: 5
+      },
+      jenna: {
+        name: 'Jenna',
+        quote: 'Are you saying that Im insensitive!?',
+        level: 1,
+        health: 50,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Jenna.gif',
+        img: 'resources/characters/hirelings/Azart.gif',
+        slimeCost: 10,
+        slots: {}
+      },
+      garet: {
+        name: 'Garet',
+        quote: 'Evil never prevails!',
+        level: 1,
+        health: 50,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Garet2.gif',
+        img: 'resources/characters/hirelings/Garet_Mace_Front.gif',
+        slimeCost: 10,
+        slots: {}
+      }
+    }],
+    levelTwo: [{
+      sheba: {
+        name: 'Sheba',
+        quote: 'I wonder... Could it be the wind?',
+        level: 2,
+        health: 75,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Sheba.gif',
+        img: 'resources/characters/hirelings/Sheba_Mace_Front.gif',
+        slimeCost: 15,
+        slots: {}
+      },
+      piers: {
+        name: 'Piers',
+        quote: 'Honor, plebeians, do you know it?',
+        level: 2,
+        health: 75,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Piers.gif',
+        img: 'resources/characters/hirelings/Piers_lSword_Front.gif',
+        slimeCost: 15,
+        slots: {}
+      },
+      ivan: {
+        name: 'Ivan',
+        quote: 'Do not give up so easily...',
+        level: 2,
+        health: 75,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Ivan.gif',
+        img: 'resources/characters/hirelings/Ivan_Staff_Front.gif',
+        slimeCost: 20,
+        slots: {}
+      }
+    }],
+    levelThree: [{
+      mendardi: {
+        name: 'Menardi',
+        quote: 'Let us make haste!',
+        level: 3,
+        health: 100,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Menardi.gif',
+        img: 'resources/characters/hirelings/Menardi_Front.gif',
+        slimeCost: 30,
+        slots: {}
+      },
+      saturos: {
+        name: 'Saturos',
+        quote: 'Tread lightly...',
+        level: 3,
+        health: 105,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Saturos.gif',
+        img: 'resources/characters/hirelings/Saturos_Front.gif',
+        slimeCost: 30,
+        slots: {}
+      },
+      felix: {
+        name: 'Felix',
+        quote: 'What are you saying?',
+        level: 3,
+        health: 125,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Felix2.gif',
+        img: 'resources/characters/hirelings/Felix_lBlade_Front.gif',
+        slimeCost: 40,
+        slots: {}
+      }
+    }],
+    levelFour: [{
+      karst: {
+        name: 'Karst',
+        quote: 'I would never do anything as terrible as breaking my word.',
+        level: 4,
+        health: 150,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Karst.gif',
+        img: 'resources/characters/hirelings/Karst_Front.gif',
+        slimeCost: 50,
+        slots: {}
+      },
+      agatio: {
+        name: 'Agatio',
+        quote: 'Our town hangs on the brink of extinction',
+        level: 4,
+        health: 160,
+        unique: true,
+        icon: 'resources/characters/hirelings/hireicons/Agatio.gif',
+        img: 'resources/characters/hirelings/Agatio_Front.gif',
+        slimeCost: 60,
+        slots: {}
+      }
+    }]
   }
 }]
+//#endregion
 
+let resources = {
+  slimes: {
+    name: "Slimes",
+    count: 0,
+    icon: 'resources/resource-icons/Potion.gif',
+    ref: 'slimes'
+  },
+  gold: {
+    name: "Gold",
+    count: 0,
+    icon: 'resources/resource-icons/Coins.gif',
+    ref: 'gold'
+  },
+  health: {
+    name: "Health",
+    count: 100,
+    icon: 'resources/resource-icons/Water_of_Life.gif',
+    ref: 'health'
+  }
+}
+let healthCount = resources.health.count
+let goldCount = resources.gold.count
+let slimesCount = resources.slimes.count
+
+let hitDisplayMsg = ""
 //#region ANCHOR Slots
 let weapons = [{ 
   base: [{
@@ -367,221 +587,82 @@ let boots = [{
 //#endregion
 
 
-let monsters = {
-  brigand: [{
-    name: 'Brigand',
-    img: 'resources/monsters/Brigand.gif',
-    level: 0
-  }],
-  slimes: [
-    {
-      name: 'Weak Slime',
-      img: 'resources/monsters/slimes/Slime.gif',
-      level: 1
-    },{ 
-      name: 'Meaty Slime',
-      img: 'resources/monsters/slimes/Slime_Beast.gif',
-      level: 2
-    },{
-      name: 'Chonky Slime',
-      img: 'resources/monsters/slimes/Ooze.gif',
-      level: 3
-    }
-  ],
-  beasts: [{
-    goblin: {
-      name: 'Goblin',
-      img: 'resources/monsters/beasts/Alec_Goblin.gif',
-      level: 1
-    },
-    antLion: {
-      name: 'Ant Lion',
-      img: 'resources/monsters/beasts/Ant_Lion.gif',
-      level: 2
-    },
-    golem: {
-      name: 'Earth Golem',
-      img: 'resources/monsters/beasts/Golem.gif',
-      level: 3
-    },
-    woodWalker: {
-      name: 'Wood Walker',
-      img: 'resources/monsters/beasts/Wood_Walker.gif',
-      level: 4
-    },
-  }],
-  undead: [{
-    zombie: {
-      name: 'Zombie',
-      img: 'resources/monsters/undead/Zombie.gif',
-      level: 1
-    },
-    skeleton: {
-      name: 'Skeleton',
-      img: 'resources/monsters/undead/Skeleton.gif',
-      level: 2
-    },
-    ghoul: {
-      name: 'Ghoul',
-      img: 'resources/monsters/undead/Amaze.gif',
-      level: 3
-    },
-    slayer: {
-      name: 'Slayer',
-      img: 'resources/monsters/undead/Slayer.gif',
-      level: 4
-    },
-  }]
-}
 
-let characters = [{
-  unlocks: {
-    guildMaster: {
-      name: 'Guild Master',
-      icon: 'resources/characters/unlocks/Innkeeper.gif',
-      slimeCost: 20,
-    },
-    bladeSmith: {
-      name: 'Blade Smith',
-      icon: 'resources/characters/unlocks/Master_Hama.gif',
-      goldCost: 20,
-    }
-  },
-  hirelings: {
-    levelOne: [{
-      spectralArmor: {
-        name: 'Spectral Armor',
-        quote: `"Rattling noises"`,
-        level: 1,
-        health: 20,
-        unique: false,
-        icon: 'resources/characters/hirelings/hireicons/Shadow_Babi.gif',
-        img: 'resources/characters/hirelings/Azart.gif',
-        slimeCost: 5
-      },
-      jenna: {
-        name: 'Jenna',
-        quote: 'Are you saying that Im insensitive!?',
-        level: 1,
-        health: 50,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Jenna.gif',
-        img: 'resources/characters/hirelings/Azart.gif',
-        slimeCost: 10,
-        slots: {}
-      },
-      garet: {
-        name: 'Garet',
-        quote: 'Evil never prevails!',
-        level: 1,
-        health: 50,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Garet2.gif',
-        img: 'resources/characters/hirelings/Garet_Mace_Front.gif',
-        slimeCost: 10,
-        slots: {}
-      }
-    }],
-    levelTwo: [{
-      sheba: {
-        name: 'Sheba',
-        quote: 'I wonder... Could it be the wind?',
-        level: 2,
-        health: 75,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Sheba.gif',
-        img: 'resources/characters/hirelings/Sheba_Mace_Front.gif',
-        slimeCost: 15,
-        slots: {}
-      },
-      piers: {
-        name: 'Piers',
-        quote: 'Honor, plebeians, do you know it?',
-        level: 2,
-        health: 75,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Piers.gif',
-        img: 'resources/characters/hirelings/Piers_lSword_Front.gif',
-        slimeCost: 15,
-        slots: {}
-      },
-      ivan: {
-        name: 'Ivan',
-        quote: 'Do not give up so easily...',
-        level: 2,
-        health: 75,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Ivan.gif',
-        img: 'resources/characters/hirelings/Ivan_Staff_Front.gif',
-        slimeCost: 20,
-        slots: {}
-      }
-    }],
-    levelThree: [{
-      mendardi: {
-        name: 'Menardi',
-        quote: 'Let us make haste!',
-        level: 3,
-        health: 100,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Menardi.gif',
-        img: 'resources/characters/hirelings/Menardi_Front.gif',
-        slimeCost: 30,
-        slots: {}
-      },
-      saturos: {
-        name: 'Saturos',
-        quote: 'Tread lightly...',
-        level: 3,
-        health: 105,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Saturos.gif',
-        img: 'resources/characters/hirelings/Saturos_Front.gif',
-        slimeCost: 30,
-        slots: {}
-      },
-      felix: {
-        name: 'Felix',
-        quote: 'What are you saying?',
-        level: 3,
-        health: 125,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Felix2.gif',
-        img: 'resources/characters/hirelings/Felix_lBlade_Front.gif',
-        slimeCost: 40,
-        slots: {}
-      }
-    }],
-    levelFour: [{
-      karst: {
-        name: 'Karst',
-        quote: 'I would never do anything as terrible as breaking my word.',
-        level: 4,
-        health: 150,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Karst.gif',
-        img: 'resources/characters/hirelings/Karst_Front.gif',
-        slimeCost: 50,
-        slots: {}
-      },
-      agatio: {
-        name: 'Agatio',
-        quote: 'Our town hangs on the brink of extinction',
-        level: 4,
-        health: 160,
-        unique: true,
-        icon: 'resources/characters/hirelings/hireicons/Agatio.gif',
-        img: 'resources/characters/hirelings/Agatio_Front.gif',
-        slimeCost: 60,
-        slots: {}
-      }
-    }]
-  }
-}]
-
+// SECTION Start functionality
+// draw main 3 resources
+drawResources()
 // Initialize first monster (Brigand, lvl 0)
 setCurrentMonster("brigand", "0")
 
+//#region ANCHOR Draws resources and updates them
+function drawResources(){
+  let template = ""
+  for (let key in resources) {
+    let resource = resources[key]
+    // if(resource !== "monsterHeads"){
+      template += /*html*/`
+      <div class="col-4">
+        <div class="row">${resource.name}</div>
+        <div class="row">
+          <img src="${resource.icon}">
+          <div id="${resource.ref}-count"></div>
+        </div>
+      </div>
+      `
+  }
+  document.getElementById("resources").innerHTML = template
+  countUpdateTimer()
+}
+
+function drawResourceCount(){
+  let healthCountElem = document.getElementById("health-count")
+  let slimesCountElem = document.getElementById("slimes-count")
+  let goldCountElem = document.getElementById("gold-count")
+
+  healthCountElem.innerText = healthCount.toString()
+  slimesCountElem.innerText = slimesCount.toString()
+  goldCountElem.innerText = goldCount.toString()
+}
+
+function countUpdateTimer(){
+ setInterval(drawResourceCount, 1000)
+}
+//#endregion
+
+//#region ANCHOR SPECIAL adds and draws special Monster Heads resource
+function drawMonsterHeads(){
+  let monsterHeadsCountElem = document.getElementById("monsterHeads-count")
+  monsterHeadsCountElem.innerText = resources.monsterHeads.count.toString()
+}
+function mHeadsCountUpdateTimer(){
+  let interval = setInterval(drawResourceCount, 1000)
+}
+function addResource(){
+  resources["monsterHeads"] = {
+    name: "Monster Heads",
+    count: 0,
+    icon: 'resources/resource-icons/Flame_Shield.gif',
+    ref: 'monsterHeads'
+  }
+  let template = ""
+  for (let key in resources) {
+    let resource = resources[key]
+    if(resource == "monsterHeads"){
+      template += /*html*/`
+      <div class="col-12">
+        <div class="row">${resource.name}</div>
+        <img src="${resource.icon}">
+        <div id="${resource}-count"></div>
+      </div>
+      `
+  }}
+  document.getElementById("resources").innerHTML = template
+  drawMonsterHeads()
+  mHeadsCountUpdateTimer()
+}
+//#endregion
+
+//#region ANCHOR Setting up Monsters and Slimes, and damage
 // Set a monster name and image
 function setCurrentMonster(type, lvl){
   let monsterImageElem = document.getElementById("monster-image")
@@ -593,35 +674,43 @@ function setCurrentMonster(type, lvl){
   // monsterImageElem.src = monsters[type].find(m => m.type == type.img).img
   monsterImageElem.src = currentMonster.img
   monsterNameElem.innerText = currentMonster.name
+  debugger
+  intervalChooser(lvl)
 
 }
 
-function healthTimer(){
-  // look at the current monster, decrement the health based on that. Each level is a timed amount
-  // pass in monster level
+// Does Health damage
+function monsterHitter(){
+  healthCount -= 1
+  // I'll have to make this flash and stuff in CSS, maybe making a separate timer that has it fade out after the intervalChooser time goes.
+  let hitDisplayElem = document.getElementById("monster-name").innerText
+  document.getElementById("hit-display").innerText = hitDisplayElem
   
-  let monsterHits = monsters[currentMonsterType][currentMonster];
-  let interval = setInterval(drawHealth, 1000)
-  console.log(interval);
-  
-
 }
-
-function drawHirelings(){
-
+// Decides timing on health damage (more based on monster level)
+function intervalChooser(lvl){
+  let interval = (lvl == 0) ? setInterval(monsterHitter, 10000):(lvl == 1) ? setInterval(monsterHitter, 6000):(lvl == 2) ? setInterval(monsterHitter, 3000):(lvl == 3) ? setInterval(monsterHitter, 1000):setInterval(monsterHitter, 500);
+  return interval
 }
+//#endregion
+
 
 function drawSlots(){
 
 }
 
+
+function drawHirelings(){
+// Somewhere in here, when you unlock the next level of Hireling you make the next form of Monster and do setCurrentMonster(type,lvl).
+// 
+}
+
+
 function drawItems(){
 
 }
 
-function drawResources(){
 
-}
 
 function djinnActivate(){
 
