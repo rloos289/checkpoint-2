@@ -251,7 +251,31 @@ let goldCount = resources.gold.count
 let slimesCount = resources.slimes.count
 
 let hitDisplayMsg = ""
+
 //#region ANCHOR Slots
+let slots = {
+  weapon: {
+    name: "Weapon",
+    icon: "resources/slots/Attack.gif",
+    ref: "weapon"
+  },
+  special: {
+    name: "Special",
+    icon: "resources/slots/Psynergy.gif",
+    ref: "special"
+  },
+  armor: {
+    name: "Armor",
+    icon: "resources/slots/Asuras_Armor.gif",
+    ref: "armor"
+  },
+  boots: {
+    name: "Boots",
+    icon: "resources/slots/Quick_Boots.gif",
+    ref: "boots"
+  }
+}
+
 let weapons = [{ 
   base: [{
     rustySword: {
@@ -584,13 +608,14 @@ let boots = [{
       }
     }
 }]
+
 //#endregion
 
 
-
 // SECTION Start functionality
-// draw main 3 resources
+// draw main 3 resources and slots
 drawResources()
+drawSlots("heroslot")
 // Initialize first monster (Brigand, lvl 0)
 setCurrentMonster("brigand", "0")
 
@@ -674,7 +699,6 @@ function setCurrentMonster(type, lvl){
   // monsterImageElem.src = monsters[type].find(m => m.type == type.img).img
   monsterImageElem.src = currentMonster.img
   monsterNameElem.innerText = currentMonster.name
-  debugger
   intervalChooser(lvl)
 
 }
@@ -682,7 +706,7 @@ function setCurrentMonster(type, lvl){
 // Does Health damage
 function monsterHitter(){
   healthCount -= 1
-  // I'll have to make this flash and stuff in CSS, maybe making a separate timer that has it fade out after the intervalChooser time goes.
+  // TODO I'll have to make this flash and stuff in CSS, maybe making a separate timer that has it fade out after the intervalChooser time goes.
   let hitDisplayElem = document.getElementById("monster-name").innerText
   document.getElementById("hit-display").innerText = hitDisplayElem
   
@@ -695,8 +719,18 @@ function intervalChooser(lvl){
 //#endregion
 
 
-function drawSlots(){
-
+function drawSlots(slotName){
+  let template = ""
+  // debugger
+    for (let key in slots){
+      let slot = slots[key]
+      template += /*html*/`
+        <div id="${slot.ref}-slot"><img src="${slot.icon}"></div>
+        <div>${slot.name}</div>
+      `
+    }
+    
+    document.getElementById(`${slotName}`).innerHTML = template
 }
 
 
