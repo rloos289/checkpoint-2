@@ -81,8 +81,8 @@ let monsters = {
 }
 let currentMonsterLevel = 0
 
-let characters = [{
-  unlocks: {
+
+  let unlocks = {
     guildMaster: {
       name: 'Guild Master',
       icon: 'resources/characters/unlocks/Innkeeper.gif',
@@ -93,9 +93,10 @@ let characters = [{
       icon: 'resources/characters/unlocks/Master_Hama.gif',
       goldCost: 20,
     }
-  },
-  hirelings: {
-    levelOne: [{
+  }
+
+  let hirelings = {
+    levelOne: {
       spectralArmor: {
         name: 'Spectral Armor',
         quote: `"Rattling noises"`,
@@ -104,7 +105,9 @@ let characters = [{
         unique: false,
         icon: 'resources/characters/hirelings/hireicons/Shadow_Babi.gif',
         img: 'resources/characters/hirelings/Azart.gif',
-        slimeCost: 5
+        slimeCost: 5,
+        ref: "spectralArmor",
+        slots: {}
       },
       jenna: {
         name: 'Jenna',
@@ -115,6 +118,7 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Jenna.gif',
         img: 'resources/characters/hirelings/Azart.gif',
         slimeCost: 10,
+        ref: "jenna",
         slots: {}
       },
       garet: {
@@ -126,10 +130,11 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Garet2.gif',
         img: 'resources/characters/hirelings/Garet_Mace_Front.gif',
         slimeCost: 10,
+        ref: "garet",
         slots: {}
       }
-    }],
-    levelTwo: [{
+    },
+    levelTwo: {
       sheba: {
         name: 'Sheba',
         quote: 'I wonder... Could it be the wind?',
@@ -139,6 +144,7 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Sheba.gif',
         img: 'resources/characters/hirelings/Sheba_Mace_Front.gif',
         slimeCost: 15,
+        ref: "sheba",
         slots: {}
       },
       piers: {
@@ -150,6 +156,7 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Piers.gif',
         img: 'resources/characters/hirelings/Piers_lSword_Front.gif',
         slimeCost: 15,
+        ref: "piers",
         slots: {}
       },
       ivan: {
@@ -161,10 +168,11 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Ivan.gif',
         img: 'resources/characters/hirelings/Ivan_Staff_Front.gif',
         slimeCost: 20,
+        ref: "ivan",
         slots: {}
       }
-    }],
-    levelThree: [{
+    },
+    levelThree: {
       mendardi: {
         name: 'Menardi',
         quote: 'Let us make haste!',
@@ -174,6 +182,7 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Menardi.gif',
         img: 'resources/characters/hirelings/Menardi_Front.gif',
         slimeCost: 30,
+        ref: "menardi",
         slots: {}
       },
       saturos: {
@@ -185,6 +194,7 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Saturos.gif',
         img: 'resources/characters/hirelings/Saturos_Front.gif',
         slimeCost: 30,
+        ref: "saturos",
         slots: {}
       },
       felix: {
@@ -196,10 +206,11 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Felix2.gif',
         img: 'resources/characters/hirelings/Felix_lBlade_Front.gif',
         slimeCost: 40,
+        ref: "felix",
         slots: {}
       }
-    }],
-    levelFour: [{
+    },
+    levelFour: {
       karst: {
         name: 'Karst',
         quote: 'I would never do anything as terrible as breaking my word.',
@@ -209,6 +220,7 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Karst.gif',
         img: 'resources/characters/hirelings/Karst_Front.gif',
         slimeCost: 50,
+        ref: "karst",
         slots: {}
       },
       agatio: {
@@ -220,11 +232,12 @@ let characters = [{
         icon: 'resources/characters/hirelings/hireicons/Agatio.gif',
         img: 'resources/characters/hirelings/Agatio_Front.gif',
         slimeCost: 60,
+        ref: "agatio",
         slots: {}
       }
-    }]
+    }
   }
-}]
+
 let currentHirelingLevel = 0
 //#endregion
 
@@ -254,7 +267,7 @@ let slimesCount = resources.slimes.count
 
 let hitDisplayMsg = ""
 
-//#region ANCHOR Slots
+//#region ANCHOR Slots and Items
 let slots = {
   weapon: {
     name: "Weapon",
@@ -611,17 +624,22 @@ let boots = [{
     }
 }]
 let currentItemLevel = 0
+
+let inventory = {}
+
 //#endregion
 
 
 // SECTION Start functionality
 // draw main 3 resources and slots
 drawResources()
-drawSlots("heroslot")
+drawSlots("hero")
 // Initialize first monster (Brigand, lvl 0)
 setCurrentMonster("brigand", "0")
+setCurrentSlime("slimes", "1")
 // Set costs for Guild Master and Bladesmith
-guildMasterCost()
+drawGuildCost()
+drawBladesmithCost()
 
 //#region ANCHOR Draws resources and updates them
 function drawResources(){
@@ -695,17 +713,31 @@ function addResource(){
 //#region ANCHOR Setting up Monsters and Slimes, and damage
 // Set a monster name and image
 function setCurrentMonster(type, lvl){
-  let monsterImageElem = document.getElementById("monster-image")
-  let monsterNameElem = document.getElementById("monster-name")
-
   let currentMonster = monsters[type].find(m => m.lvl == monsters[type].level)
   
   // this is for reference for understanding. it was working at one point.
   // monsterImageElem.src = monsters[type].find(m => m.type == type.img).img
+
+  let monsterImageElem = document.getElementById("monster-image")
+  let monsterNameElem = document.getElementById("monster-name")
+
   monsterImageElem.src = currentMonster.img
   monsterNameElem.innerText = currentMonster.name
   intervalChooser(lvl)
 
+}
+
+function setCurrentSlime(type, lvl){
+  let currentSlime = monsters[type].find(m => m.lvl == monsters[type].level)
+  let slimeImageElem = document.getElementById("slime-image")
+  let slimeNameElem = document.getElementById("slime-name")
+
+  slimeImageElem.src = currentSlime.img
+  slimeNameElem.innerText = currentSlime.name
+}
+
+function slimeHitter(){
+  // onclick of weapon image or by the auto-attack of a hireling,
 }
 
 // Does Health damage
@@ -724,6 +756,8 @@ function intervalChooser(lvl){
 //#endregion
 
 
+
+
 function drawSlots(slotName){
   let template = ""
     for (let key in slots){
@@ -739,40 +773,114 @@ function drawSlots(slotName){
       `
     }
     
-    document.getElementById(`${slotName}`).innerHTML = template
+    document.getElementById(`${slotName}-slot`).innerHTML = template
 }
 
-function drawButtonsInterval(){
-  
+//#region SECTION Guild Master and Bladesmith cost
+function drawGuildCost(){
+  let cost = (currentHirelingLevel + 1) * 15
+  document.getElementById("guild-cost").innerHTML = cost.toString()
+  if (resources.slimes.count < cost){
+    document.getElementById("hirelingBtn").setAttribute('disabled', 'disabled');
+
+  }else{
+    document.getElementById("hirelingBtn").removeAttribute('disabled');
+}
+  if(currentHirelingLevel == 4){
+  document.getElementById("guildcostgrey").classList.add("grey-out")
+  document.getElementById("guild-cost").innerHTML = "0"
+}
 }
 
-function guildMasterCost(){
-// When guildmaster button is pressed, sees if slimes are available. if so, subtract X number of slimes and make the button unpressable. Then open up the next hireling buyable.
-let cost = (currentHirelingLevel + 1) * 15
-document.getElementById("guild-cost").innerHTML = cost.toString()
-
-if(resources.slimes.count >= cost){
-  document.getElementById("hirelingBtn").classList.remove("btn-inactive")
-
+function guildCost(){
+  let cost = (currentHirelingLevel + 1) * 15
+  resources.slimes.count -= cost;
+  currentHirelingLevel++
+  currentMonsterLevel++
+  randomizeMonsterType(currentMonsterLevel)
+  drawGuildCost()
+  let hirelingLevelString = currentHirelingLevel.toString()
+  drawHirelings(hirelingLevelString)
 }
 
-currentHirelingLevel++
+function drawBladesmithCost(){
+  let cost = (currentItemLevel + 1) * 10
+  document.getElementById("item-cost").innerHTML = cost.toString()
+  if (resources.gold.count < cost){
+    document.getElementById("itemBtn").setAttribute('disabled', 'disabled');
+  }
+  else{
+    document.getElementById("itemBtn").removeAttribute('disabled');
+  }
 
+  if(currentItemLevel == 4){
+    document.getElementById("itemcostgrey").classList.add("grey-out")
+    document.getElementById("item-cost").innerHTML = "0"
+  }
 }
 
-function drawHirelings(){
+function bladesmithCost(){
+  let cost = (currentItemLevel + 1) * 10
+  resources.gold.count -= cost;
+  currentItemLevel++
+  // TODO randomizeMonsterType
+  randomizeMonsterType()
+  drawBladesmithCost()
+}
+//#endregion
+
+
+function drawHirelings(hirelingLevelNum){
 // Somewhere in here, when you unlock the next level of Hireling you make the next form of Monster and do setCurrentMonster(type,lvl).
-// 
 
+let template = ""
+let hirelingLevel = (hirelingLevelNum == 1) ? hirelings.levelOne:(hirelingLevelNum == 2) ? hirelings.levelTwo:(hirelingLevelNum == 3) ? hirelings.levelThree:hirelings.levelFour
+
+let hirelingLevelString = (hirelingLevelNum == 1) ? "levelOne":(hirelingLevelNum == 2) ? "levelTwo":(hirelingLevelNum == 3) ? "levelThree":"levelFour"
+
+  for (let key in hirelingLevel){
+  let hireling = hirelingLevel[key]
+  template += /*html*/`
+    <div class="col-4">
+      <div><img src="${hireling.icon}"></div>
+      <div>${hireling.name}</div>
+      <div id="${hireling.slimeCost}-${hireling.ref}">${hireling.slimeCost}&nbsp;Slimes</div>
+      <button id="${hireling.ref}-btn" class="btn btn-light font-small hirelingBtn ${hireling.unique}" onclick="drawBoughtHirelings("${hireling.ref}")">Hire</button>
+    </div>
+  `
+
+    }
+
+document.getElementById(`hireling-draw-${hirelingLevelString}`).innerHTML = template
+}
+
+function randomizeMonsterType(lvl){
+  // choose undead or beast
+  // draw monster
+  setCurrentMonster(type, lvl)
+}
+
+
+function drawBoughtHirelings(hirelingRef){
+
+  // look for correct hireling
+  // insert template based on correct hireling.
+
+  // add a document.getElementById(`${hirelingRef}-slot`)
+
+  // add a radio button to make their auto-attack clicker choose between slimes and monsters
+
+  // dynamically draw health (a 5th slot, above the rest)
+  drawSlots(hirelingRef)
 }
 
 function drawMenu(item){
   // take input of item. if a hireling is active, create options amongst the hirelings to pick.
   // take that input, if the slot applied is full, send the old item to inventory
-  if (item ){}
+ 
 }
 
-function drawInventory(){
+function drawCurrentPlayerWeapon (){
 
 }
 
@@ -780,15 +888,14 @@ function drawItems(){
 
 }
 
+function drawInventory(){
 
+}
 
 function djinnActivate(){
 
 }
 
-function drawSelectionMenu(){
-
-}
 
 
 

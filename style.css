@@ -26,12 +26,16 @@ font-family: 'Averia Serif Libre', cursive;
 .main-font{
 /* Old school */
 font-family: goldenSun;
+font-size: 2vh;
 }
 
 .font-small{
-  font-size: .05rem;
+  font-size: 1vh;
 }
 
+.grey-out{
+  color: grey !important;
+}
 
 .rm-my{
   margin-top: 0px;

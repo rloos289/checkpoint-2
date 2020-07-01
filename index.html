@@ -43,7 +43,7 @@
               <div id="char-img" class="row"></div>
             </div>
             <div class="col-6">
-              <div id="heroslot" class="row">
+              <div id="hero-slot" class="row">
               </div>
               <div class="row">
                 <div class="col-12">
@@ -74,7 +74,14 @@
         <!-- ANCHOR Slimes / Monsters -->
         <div class="col-4">
           <div class="row">
-            <div class="col-6">Slimes</div>
+            <div class="col-6">
+              <div class="row" id="slime-name">
+                <div id="slime-name"></div>
+              </div>
+              <div class="row">
+                <img id="slime-image"></img>
+              </div>
+            </div>
             <div class="col-6">
               <div class="row" id="monster-name">
                 <div id="monster-name"></div>
@@ -160,34 +167,24 @@
         <div>Name</div>
         </div>
         <div class="col-4">
-          <button id="hirelingBtn" class="btn-light font-small hirelingBtn" onclick="guildMasterCost()">Unlock Hirelings</button>
-          <div id="guild-cost"></div> <div>Slimes</div>
+          <div class="row">
+          <button id="hirelingBtn" class="btn btn-light font-small hirelingBtn" onclick="guildCost()">Unlock Hirelings</button>
+        </div>
+          <div class="row" id="guildcostgrey">
+          <div class="" id="guild-cost"></div> <div class="">&nbsp;Slimes</div>
+        </div>
         </div>
       </div>
       <!-- Hireling Loadout -->
       <div class="row">
         <div class="col-12">
         <div class="row">Level 1 Hirelings</div>
-          <div class="row">
-          <div class="col-4">
-            <div>Icon</div>
-            <div>Name</div>
-            <div>Cost</div>
-          </div>
-          <div class="col-4">
-            <div>Icon</div>
-            <div>Name</div>
-            <div>Cost</div>
-          </div>
-          <div class="col-4">
-            <div>Icon</div>
-            <div>Name</div>
-            <div>Cost</div>
-          </div>
+          <div id="hireling-draw-levelOne" class="row">
+
         </div>
         
         <div class="row">Level 2 Hirelings</div>
-          <div class="row">
+          <div id="hireling-draw-levelTwo" class="row">
           <div class="col-4">
             <div>Icon</div>
             <div>Name</div>
@@ -206,7 +203,7 @@
         </div>
 
         <div class="row">Level 3 Hirelings</div>
-          <div class="row">
+          <div id="hireling-draw-levelThree" class="row">
           <div class="col-4">
             <div>Icon</div>
             <div>Name</div>
@@ -225,7 +222,7 @@
         </div>
 
         <div class="row">Level 4 Hirelings</div>
-        <div class="row">
+        <div id="hireling-draw-levelFour" class="row">
           <div class="col-6">
             <div>Icon</div>
             <div>Name</div>
@@ -250,8 +247,12 @@
         <div>Name</div>
         </div>
         <div class="col-4">
-          <div>Buy</div>
-          <div>Cost</div>
+          <div class="row">
+          <button id="itemBtn" class="btn btn-light font-small itemBtn" onclick="bladesmithCost()">Unlock Items</button>
+        </div>
+          <div class="row" id="itemcostgrey">
+          <div class="" id="item-cost"></div> <div class="" id="">&nbsp;Gold</div>
+        </div>
         </div>
       </div>
       <div class="row">
