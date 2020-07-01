@@ -28,6 +28,10 @@ font-family: 'Averia Serif Libre', cursive;
 font-family: goldenSun;
 }
 
+.font-small{
+  font-size: .05rem;
+}
+
 
 .rm-my{
   margin-top: 0px;

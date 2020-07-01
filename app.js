@@ -79,6 +79,7 @@ let monsters = {
     },
   }]
 }
+let currentMonsterLevel = 0
 
 let characters = [{
   unlocks: {
@@ -224,6 +225,7 @@ let characters = [{
     }]
   }
 }]
+let currentHirelingLevel = 0
 //#endregion
 
 let resources = {
@@ -608,7 +610,7 @@ let boots = [{
       }
     }
 }]
-
+let currentItemLevel = 0
 //#endregion
 
 
@@ -618,6 +620,8 @@ drawResources()
 drawSlots("heroslot")
 // Initialize first monster (Brigand, lvl 0)
 setCurrentMonster("brigand", "0")
+// Set costs for Guild Master and Bladesmith
+guildMasterCost()
 
 //#region ANCHOR Draws resources and updates them
 function drawResources(){
@@ -651,6 +655,7 @@ function drawResourceCount(){
 
 function countUpdateTimer(){
  setInterval(drawResourceCount, 1000)
+ setInterval(drawMenu, 1000)
 }
 //#endregion
 
@@ -721,24 +726,55 @@ function intervalChooser(lvl){
 
 function drawSlots(slotName){
   let template = ""
-  // debugger
     for (let key in slots){
       let slot = slots[key]
       template += /*html*/`
-        <div id="${slot.ref}-slot"><img src="${slot.icon}"></div>
-        <div>${slot.name}</div>
+        <div class="col-12 d-flex">
+        <div><img src="${slot.icon}"></div>
+        <div>${slot.name}:</div>
+        </div>
+        <div class="col-12">
+        <div class="empty-slot" id="${slot.ref}-slot"></div>
+        </div>
       `
     }
     
     document.getElementById(`${slotName}`).innerHTML = template
 }
 
+function drawButtonsInterval(){
+  
+}
+
+function guildMasterCost(){
+// When guildmaster button is pressed, sees if slimes are available. if so, subtract X number of slimes and make the button unpressable. Then open up the next hireling buyable.
+let cost = (currentHirelingLevel + 1) * 15
+document.getElementById("guild-cost").innerHTML = cost.toString()
+
+if(resources.slimes.count >= cost){
+  document.getElementById("hirelingBtn").classList.remove("btn-inactive")
+
+}
+
+currentHirelingLevel++
+
+}
 
 function drawHirelings(){
 // Somewhere in here, when you unlock the next level of Hireling you make the next form of Monster and do setCurrentMonster(type,lvl).
 // 
+
 }
 
+function drawMenu(item){
+  // take input of item. if a hireling is active, create options amongst the hirelings to pick.
+  // take that input, if the slot applied is full, send the old item to inventory
+  if (item ){}
+}
+
+function drawInventory(){
+
+}
 
 function drawItems(){
 
