@@ -23,7 +23,7 @@ let monsters = {
     {
       name: 'Weak Slime',
       img: 'resources/monsters/slimes/Slime.gif',
-      level: 1
+      level: 0
     },{ 
       name: 'Meaty Slime',
       img: 'resources/monsters/slimes/Slime_Beast.gif',
@@ -31,7 +31,7 @@ let monsters = {
     },{
       name: 'Chonky Slime',
       img: 'resources/monsters/slimes/Ooze.gif',
-      level: 3
+      level: 4
     }
   ],
   beasts: [{
@@ -80,6 +80,7 @@ let monsters = {
   }]
 }
 let currentMonsterLevel = 0
+let currentSlimeLevel = 0
 
 
   let unlocks = {
@@ -291,23 +292,26 @@ let slots = {
   }
 }
 
-let weapons = [{ 
-  base: [{
+let weapons = { 
+  base: {
     rustySword: {
       name: 'Rusty Sword',
       description: 'You found it on the ground',
       level: 0,
+      slimeMultiplier: 1,
+      goldMultiplier: 1,
       unique: true,
       icon: 'resources/items/weapons/Rusty_Sword.gif',
       slimeCost: 0
     }
-  }],
-  levelOne: [{
+  },
+  levelOne: {
     broadAxe: {
       name: 'Broad Axe',
       description: 'A wide axe that helps with killing Slimes',
       level: 1,
       slimeMultiplier: 2,
+      goldMultiplier: 1,
       unique: false,
       icon: 'resources/items/weapons/Broad_Axe.gif',
       slimeCost: 5
@@ -316,18 +320,20 @@ let weapons = [{
       name: 'Witchs Wand',
       description: 'A crooked wand that helps with killing Monsters',
       level: 1,
+      slimeMultiplier: 1,
       goldMultiplier: 2,
       unique: true,
       icon: 'resources/items/weapons/Witchs_Wand.gif',
       slimeCost: 5
     }
-  }],
-  levelTwo: [{
+  },
+  levelTwo: {
     silverBlade: {
       name: 'Silver Blade',
       description: 'A sword made with silver that helps with killing Slimes',
       level: 2,
       slimeMultiplier: 3,
+      goldMultiplier: 1,
       unique: false,
       icon: 'resources/items/weapons/Silver_Blade.gif',
       slimeCost: 10
@@ -336,18 +342,20 @@ let weapons = [{
       name: 'Blessed Mace',
       description: 'A divinely blessed mace that helps with killing Monsters',
       level: 2,
+      slimeMultiplier: 1,
       goldMultiplier: 3,
       unique: true,
       icon: 'resources/items/weapons/Blessed_Mace.gif',
       slimeCost: 10
     }
-  }],
-  levelThree: [{
+  },
+  levelThree: {
     psynergyRod: {
       name: 'Psynergy Rod',
       description: 'A strange magical rod that helps with killing Slimes',
       level: 3,
       slimeMultiplier: 4,
+      goldMultiplier: 1,
       unique: false,
       icon: 'resources/items/weapons/Psynergy_Rod.gif',
       slimeCost: 15
@@ -356,13 +364,14 @@ let weapons = [{
       name: 'Muramasa',
       description: 'A blade forged in blood that helps with killing Monsters',
       level: 3,
+      slimeMultiplier: 1,
       goldMultiplier: 4,
       unique: true,
       icon: 'resources/items/weapons/Witchs_Wand.gif',
       slimeCost: 15
     }
-  }],
-  levelFour: [{
+  },
+  levelFour: {
     gaiaBlade: {
       name: 'Gaia Blade',
       description: 'Decimate your foes with this blade forged from a falling star',
@@ -374,11 +383,11 @@ let weapons = [{
       slimeCost: 30,
       goldCost: 30
     }
-  }]
-}]
+  }
+}
 
-let special = [{ 
-  levelOne: [{
+let special = { 
+  levelOne: {
       fujinShield: {
         name: 'Fujin Shield',
         description: 'A simple but strong shield that protects a little from both Slimes and Monsters',
@@ -402,8 +411,8 @@ let special = [{
         used: 'resources/items/djinn/djinn-used/Venus_Djinn_Sit.gif',
         slimeCost: 5
       }
-  }],
-  levelTwo: [{
+  },
+  levelTwo: {
       knightsHelm: {
         name: 'Knights Helm',
         description: 'A sturdy helmet that protects from both Slimes and Monsters',
@@ -427,8 +436,8 @@ let special = [{
         used: 'resources/items/djinn/djinn-used/Mercury_Djinn_Sit.gif',
         slimeCost: 10
       }
-  }],
-  levelThree: [{
+  },
+  levelThree: {
       starDust: {
         name: 'Star Dust',
         description: 'Rare metal from space',
@@ -454,8 +463,8 @@ let special = [{
         used: 'resources/items/djinn/djinn-used/Mars_Djinn_Sit.gif',
         slimeCost: 15
       }
-  }],
-  levelFour: [{
+  },
+  levelFour: {
       jupiterDjinn: {
         name: 'Jupiter Djinn',
         label: 'Gust',
@@ -470,11 +479,11 @@ let special = [{
         slimeCost: 30,
         goldCost: 30
       }
-  }]
-}]
+  }
+}
 
-let armor = [{ 
-  levelOne: [{
+let armor = { 
+  levelOne: {
       furCoat: {
         name: 'Fur Coat',
         description: 'Too hot in the summer, just right in the winter. Blocks Beasts a little',
@@ -493,8 +502,8 @@ let armor = [{
         icon: 'resources/items/armor/Adepts_Clothes.gif',
         slimeCost: 5
       },
-  }],
-  levelTwo: [{
+  },
+  levelTwo: {
       chainMail: {
         name: 'Chain Mail',
         description: 'Heavy, but moveable. Blocks Beasts somewhat',
@@ -513,8 +522,8 @@ let armor = [{
         icon: 'resources/items/armor/Elven_Shirt.gif',
         slimeCost: 10
       },
-  }],
-  levelThree: [{
+  },
+  levelThree: {
       plateMail: {
         name: 'Plate Mail',
         description: 'Heavy and protective. Blocks Beasts significantly',
@@ -533,8 +542,8 @@ let armor = [{
         icon: 'resources/items/armor/Ninja_Garb.gif',
         slimeCost: 15
       },
-  }],
-  levelFour: [{
+  },
+  levelFour: {
       dragonScales: {
         name: 'Dragon Scales',
         description: 'Fully magical protection. Blocks Beasts and Undead completely',
@@ -546,10 +555,10 @@ let armor = [{
         slimeCost: 30,
         goldCost: 30
       }
-  }]
-}]
+  }
+}
 
-let boots = [{ 
+let boots = { 
     levelOne: {
       furBoots: {
         name: 'Fur Boots',
@@ -622,8 +631,9 @@ let boots = [{
         goldCost: 30
       }
     }
-}]
+}
 let currentItemLevel = 0
+let slimeKillAddCount = 1
 
 let inventory = {}
 
@@ -636,7 +646,7 @@ drawResources()
 drawSlots("hero")
 // Initialize first monster (Brigand, lvl 0)
 setCurrentMonster("brigand", "0")
-setCurrentSlime("slimes", "1")
+setCurrentSlime("slimes", "0")
 // Set costs for Guild Master and Bladesmith
 drawGuildCost()
 drawBladesmithCost()
@@ -736,10 +746,17 @@ function setCurrentSlime(type, lvl){
   slimeNameElem.innerText = currentSlime.name
 }
 
-function slimeHitter(){
-  // onclick of weapon image or by the auto-attack of a hireling,
+function slimeKiller(){
+  // onclick of weapon image or by the auto-attack of a hireling, compare weapon slimeMultiplyer and boots against slime level. based on that, gain that many slime resources
+  // boots based on "slimeKillAddCount", starts at 1.
 }
 
+function monsterKiller(){
+  // on auto-attack of a hireling, compare weapon goldMultiplier against monster level (if monster level is higher, multiplier is less effective. maybe weapon does damage (aka gains you gold) of 1 * goldMultiplier - mLvl). based on that, gain that many gold resources. each hit is a "kill", and gets you a certain amount of gold.
+
+}
+
+// TODO Active blocking and monster DPS. monsterHitter and intervalChooser don't actually work for this. Need to decide if the monster hits should be to all characters at once (easier) or to a random char/hireling (harder)
 // Does Health damage
 function monsterHitter(){
   healthCount -= 1
@@ -754,6 +771,8 @@ function intervalChooser(lvl){
   return interval
 }
 //#endregion
+
+// TODO Make an active draw interval. Every .5 seconds, redraw resources, health, and monster hit message. Also, add monster hitting dynamic draw/flash: "Monster/hit/Character". Or instead, "Monster/is hitting/ 0just enough to be annoying. - 1a bit. Ouch! - 2enough to hurt. - 3a worrying amount. - 4a lot! Watch out!"
 
 
 
@@ -823,6 +842,8 @@ function bladesmithCost(){
   let cost = (currentItemLevel + 1) * 10
   resources.gold.count -= cost;
   currentItemLevel++
+  currentSlimeLevel++
+  setCurrentSlime("slimes", currentSlimeLevel)
   // TODO randomizeMonsterType
   randomizeMonsterType()
   drawBladesmithCost()
